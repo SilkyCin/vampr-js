@@ -78,21 +78,6 @@ class Vampire {
     return youngVamps
   }
 
-//////////////////////////
-// employeesThatMakeOver(amount) {
-//   let employees = [];
-//   if (this.salary > amount) {
-//     employees.push(this);
-//   }
-//   for (const subordinate of this.subordinates) {
-//     const subordinatesThatMakeOver = subordinate.employeesThatMakeOver(amount);
-//     employees = employees.concat(subordinatesThatMakeOver);
-//   }
-//   return employees;
-}
-/////////////////////////////////////////
-
-
 
   /** Stretch **/
 
