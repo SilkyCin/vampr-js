@@ -42,18 +42,57 @@ class Vampire {
 
   // Returns the vampire object with that name, or null if no vampire exists with that name
   vampireWithName(name) {
-    
+    if (this.name === name) {
+      return this;
+    }
+    for (const vampire of this.offspring) {
+      let sameNames = vampire.vampireWithName(name);
+      if (sameNames) {
+        return sameNames;
+      }
+    }
+    return null;
   }
 
   // Returns the total number of vampires that exist
   get totalDescendents() {
-    
+    let totalVamps = 0;
+
+    for (const offspring of this.offspring) {
+      totalVamps += offspring.totalDescendents + 1
+    }
+    return totalVamps;
   }
 
   // Returns an array of all the vampires that were converted after 1980
   get allMillennialVampires() {
+    let youngVamps = [];
+    if (this.yearConverted > 1980) {
+      youngVamps.push(this)
+    }
     
+    for (const offspring of this.offspring) {
+      const offspringYoung = offspring.allMillennialVampires;
+      youngVamps = youngVamps.concat(offspringYoung);
+    }
+    return youngVamps
   }
+
+//////////////////////////
+// employeesThatMakeOver(amount) {
+//   let employees = [];
+//   if (this.salary > amount) {
+//     employees.push(this);
+//   }
+//   for (const subordinate of this.subordinates) {
+//     const subordinatesThatMakeOver = subordinate.employeesThatMakeOver(amount);
+//     employees = employees.concat(subordinatesThatMakeOver);
+//   }
+//   return employees;
+}
+/////////////////////////////////////////
+
+
 
   /** Stretch **/
 
@@ -61,11 +100,11 @@ class Vampire {
   // The closest common anscestor should be the more senior vampire if a direct ancestor is used.
   // For example:
   // * when comparing Ansel and Sarah, Ansel is the closest common anscestor.
-  // * when comparing Ansel and Andrew, Ansel is the closest common anscestor.
-  closestCommonAncestor(vampire) {
+//   // * when comparing Ansel and Andrew, Ansel is the closest common anscestor.
+//   closestCommonAncestor(vampire) {
 
-  }
-}
+
+// }
 
 module.exports = Vampire;
 
